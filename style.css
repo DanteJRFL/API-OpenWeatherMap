@@ -1,0 +1,154 @@
+/* ==== RESET GERAL ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ==== CORPO ==== */
+body {
+  background-image: url(./assets/paisagem.jpg) ;
+  background-size: cover; /* cobre toda a tela */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* opcional - dá um efeito bonito */
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==== CONTEÚDO PRINCIPAL ==== */
+main {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+/* ==== CONTAINER ==== */
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 30px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ==== INPUT E BOTÃO DE PESQUISA ==== */
+.box-large {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.box-large input {
+  width: 70%;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  transition: background 0.3s;
+}
+
+.box-large input::placeholder {
+  color: #e0e0e0;
+}
+
+.box-large input:focus {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+#img-pesquisa {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#img-pesquisa:hover {
+  transform: scale(1.1);
+}
+
+/* ==== TEXTOS ==== */
+h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+#nome-cidade {
+  font-size: 35px;
+  font-weight: 600;
+}
+
+#temp {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+#umidade {
+  font-size: 20px;
+}
+
+#vento {
+  font-size: 20px;
+}
+
+/* ==== BOX PEQUENO ==== */
+.box-small {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+#previsao {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* ==== ÍCONE DO CLIMA ==== */
+#img-icon {
+  width: 80px;
+  height: 80px;
+  transition: transform 0.3s;
+}
+
+/* ==== ANIMAÇÃO DE BALANÇAR ==== */
+#img-icon:hover {
+  animation: balancar 0.8s ease-in-out;
+}
+
+@keyframes balancar {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* ==== RESPONSIVIDADE ==== */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+
+  #temp {
+    font-size: 36px;
+  }
+
+  #img-icon {
+    width: 60px;
+    height: 60px;
+  }
+}
