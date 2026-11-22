@@ -1,28 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
     <title>Previsão do Tempo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
-        <div class="container">
-            <div class="box-large">
-                <input type="text" id="cidade" placeholder="Digite a Cidade">
-                <img src="./assets/search.png" alt="pesquisa" id="img-pesquisa" onclick="pesquisarCidade()">
-            </div>
-            <H2 id="nome-cidade"></H2>
-            <H2 id="temp"></H2>
-            <div class="box-small">
-                <h2 id="previsao"></h2>
-                <img src="./assets/sun.png" alt="img-icon" id="img-icon">
-            </div>
-            <H2 id="umidade"></H2>
-            <H2 id="vento"></H2>
+
+    <div class="weather-card">
+        <!-- Barra de Pesquisa -->
+        <div class="search-box">
+            <input type="text" id="city-input" placeholder="Buscar cidade..." autofocus>
+            <button id="search-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
         </div>
-    </main>
+
+        <!-- Seção Principal (Temperatura e Animação) -->
+        <div class="main-section">
+            <div class="temperature-info">
+                <div id="temp-value">--º</div>
+                <div id="city-name">Carregando...</div>
+            </div>
+            
+            <div class="weather-animation-container" id="weather-animation-container">
+                <!-- Animação injetada via JS -->
+            </div>
+        </div>
+
+        <!-- Cards Inferiores (Umidade e Vento) -->
+        <div class="footer-cards">
+            <div class="info-card">
+                <span class="card-label">Umidade</span>
+                <span class="card-value" id="humidity-value">--%</span>
+            </div>
+            <div class="info-card">
+                <span class="card-label">Vento</span>
+                <span class="card-value" id="wind-value">-- km/h</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

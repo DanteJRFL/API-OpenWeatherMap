@@ -1,154 +1,239 @@
-/* ==== RESET GERAL ==== */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace, sans-serif;
 }
 
-/* ==== CORPO ==== */
 body {
-  background-image: url(./assets/paisagem.jpg) ;
-  background-size: cover; /* cobre toda a tela */
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* opcional - dá um efeito bonito */
-  color: #fff;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: #0f111a;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
 }
 
-/* ==== CONTEÚDO PRINCIPAL ==== */
-main {
-  width: 100%;
-  max-width: 420px;
-  padding: 20px;
+.weather-card {
+    background-color: #161923;
+    width: 600px;
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* ==== CONTAINER ==== */
-.container {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  padding: 30px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+/* Barra de Pesquisa */
+.search-box {
+    background-color: #1e2230;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    padding: 4px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* ==== INPUT E BOTÃO DE PESQUISA ==== */
-.box-large {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 25px;
+.search-box input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 12px 0;
 }
 
-.box-large input {
-  width: 70%;
-  padding: 10px 15px;
-  border-radius: 25px;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  background: rgba(255, 255, 255, 0.25);
-  color: #fff;
-  transition: background 0.3s;
+.search-box input::placeholder {
+    color: #6b7280;
 }
 
-.box-large input::placeholder {
-  color: #e0e0e0;
+.search-box button {
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
 }
 
-.box-large input:focus {
-  background: rgba(255, 255, 255, 0.35);
+.search-box button:hover {
+    color: #ffffff;
 }
 
-#img-pesquisa {
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+/* Seção Principal */
+.main-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#img-pesquisa:hover {
-  transform: scale(1.1);
+.temperature-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-/* ==== TEXTOS ==== */
-h2 {
-  font-size: 22px;
-  margin-bottom: 10px;
-  font-weight: 500;
+#temp-value {
+    font-size: 80px;
+    font-weight: bold;
+    letter-spacing: -2px;
+    line-height: 1;
 }
 
-#nome-cidade {
-  font-size: 35px;
-  font-weight: 600;
+#city-name {
+    font-size: 16px;
+    color: #9ca3af;
+    letter-spacing: 1px;
 }
 
-#temp {
-  font-size: 30px;
-  font-weight: 700;
+/* Container das Animações */
+.weather-animation-container {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-#umidade {
-  font-size: 20px;
+/* 1. ENSOLARADO (Sol brilhante com pulso) */
+.weather-sun {
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, #fde047 0%, #f59e0b 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(245, 158, 11, 0.6);
+    animation: pulseSun 3s infinite alternate;
+}
+@keyframes pulseSun {
+    0% { transform: scale(0.95); box-shadow: 0 0 30px rgba(245, 158, 11, 0.5); }
+    100% { transform: scale(1.05); box-shadow: 0 0 50px rgba(245, 158, 11, 0.8); }
 }
 
-#vento {
-  font-size: 20px;
+/* 2. NUBLADO (Nuvens sobrepostas flutuando) */
+.weather-clouds {
+    width: 100px;
+    height: 70px;
+    position: relative;
+    animation: floatCloud 3s ease-in-out infinite alternate;
+}
+.cloud-base {
+    width: 90px;
+    height: 45px;
+    background: #cbd5e1;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.cloud-puff {
+    width: 45px;
+    height: 45px;
+    background: #e2e8f0;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 15px;
+}
+.cloud-puff-2 {
+    width: 40px;
+    height: 40px;
+    background: #cbd5e1;
+    border-radius: 50%;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+}
+@keyframes floatCloud {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-8px); }
 }
 
-/* ==== BOX PEQUENO ==== */
-.box-small {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 15px;
+/* 3. CHUVA (Nuvem com pingos caindo) */
+.weather-rain {
+    width: 100px;
+    height: 90px;
+    position: relative;
+}
+.rain-drop {
+    width: 3px;
+    height: 12px;
+    background: #60a5fa;
+    position: absolute;
+    bottom: 0;
+    border-radius: 2px;
+    animation: fallRain 0.8s linear infinite;
+}
+.rain-drop:nth-child(1) { left: 25px; animation-delay: 0s; }
+.rain-drop:nth-child(2) { left: 50px; animation-delay: 0.3s; }
+.rain-drop:nth-child(3) { left: 75px; animation-delay: 0.6s; }
+
+@keyframes fallRain {
+    0% { transform: translateY(-30px); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(15px); opacity: 0; }
 }
 
-#previsao {
-  font-size: 20px;
-  margin-bottom: 10px;
+/* 4. TEMPESTADE (Nuvem escura com raio piscando) */
+.weather-storm {
+    width: 100px;
+    height: 90px;
+    position: relative;
+}
+.storm-cloud {
+    width: 90px;
+    height: 45px;
+    background: #475569;
+    border-radius: 30px;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+.lightning {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 25px solid #facc15;
+    position: absolute;
+    bottom: 5px;
+    left: 42px;
+    animation: flashLightning 2s steps(1) infinite;
+}
+@keyframes flashLightning {
+    0%, 90%, 95% { opacity: 0; filter: drop-shadow(0 0 0px transparent); }
+    92%, 97% { opacity: 1; filter: drop-shadow(0 0 10px #facc15); }
 }
 
-/* ==== ÍCONE DO CLIMA ==== */
-#img-icon {
-  width: 80px;
-  height: 80px;
-  transition: transform 0.3s;
+/* Cartões Inferiores */
+.footer-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
 
-/* ==== ANIMAÇÃO DE BALANÇAR ==== */
-#img-icon:hover {
-  animation: balancar 0.8s ease-in-out;
-}
-
-@keyframes balancar {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(10deg); }
-  50% { transform: rotate(0deg); }
-  75% { transform: rotate(-10deg); }
-  100% { transform: rotate(0deg); }
-}
-
-/* ==== RESPONSIVIDADE ==== */
-@media (max-width: 480px) {
-  .container {
+.info-card {
+    background-color: #1e2230;
     padding: 20px;
-  }
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
 
-  #temp {
-    font-size: 36px;
-  }
+.card-label {
+    font-size: 13px;
+    color: #9ca3af;
+}
 
-  #img-icon {
-    width: 60px;
-    height: 60px;
-  }
+.card-value {
+    font-size: 20px;
+    font-weight: bold;
 }
